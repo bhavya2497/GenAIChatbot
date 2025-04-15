@@ -5,9 +5,13 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain_community.chat_models import ChatOpenAI
+from dotenv import load_dotenv
+import os
 
 #openAIKey
-OPEN_AI_KEY = ""
+load_dotenv()
+ai_key = os.getenv("OPEN_API_KEY")
+
 
 st.header("My first chatbot")
 
@@ -33,7 +37,7 @@ if file is not None:
     chunks = text_splitter.split_text(text)
     #st.write(chunks)
 #generating embeddings
-    embeddings = OpenAIEmbeddings(openai_api_key=OPEN_AI_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key = ai_key)
 
 #creating vector store(service created by facebook) = FAISS (Facebook AI Sematic Search)
 
